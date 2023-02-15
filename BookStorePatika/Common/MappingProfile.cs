@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using static BookStorePatika.BookOperations.CreateBook.CreateBookCommand;
+using static BookStorePatika.BookOperations.UpdateBook.UpdateBookCommand;
 
 namespace BookStorePatika.Common
 {

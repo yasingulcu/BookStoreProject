@@ -8,7 +8,7 @@ namespace BookStorePatika.Common
     public enum GenreEnum
     {
         Science=1,
-        Spor=2,
+        Sport=2,
         Lesson=3
     }
 }

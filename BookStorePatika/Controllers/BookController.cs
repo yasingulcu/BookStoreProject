@@ -53,6 +53,9 @@ namespace BookStorePatika.Controllers
                 GetBookDetailQuery getBookDetailQuery = new GetBookDetailQuery(_context, _mapper);
 
                 getBookDetailQuery.BookId = id;
+                GetBookDetailQueryValidator bookDetailValidator = new GetBookDetailQueryValidator();
+
+                bookDetailValidator.ValidateAndThrow(getBookDetailQuery);
 
                 result = getBookDetailQuery.Handle();
 
@@ -106,6 +109,10 @@ namespace BookStorePatika.Controllers
                 UpdateBookCommand updateBookCommand = new UpdateBookCommand(_context);
                 updateBookCommand.BookId = id;
                 updateBookCommand.Model = updatedBook;
+                UpdateCommandValidator updateValidator = new UpdateCommandValidator();
+
+                updateValidator.ValidateAndThrow(updateBookCommand);
+
                 updateBookCommand.Handle();
             }
             catch (Exception ex)
