@@ -39,3 +39,4 @@ C:\Users\ysg02\Desktop\BookStorePatika\BookStorePatika\bin\Debug\net5.0\Microsof
 C:\Users\ysg02\Desktop\BookStorePatika\BookStorePatika\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
 C:\Users\ysg02\Desktop\BookStorePatika\BookStorePatika\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll
 C:\Users\ysg02\Desktop\BookStorePatika\BookStorePatika\bin\Debug\net5.0\FluentValidation.dll
+C:\Users\ysg02\Desktop\BookStorePatika\BookStorePatika\bin\Debug\net5.0\Newtonsoft.Json.dll

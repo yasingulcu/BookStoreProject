@@ -48,23 +48,20 @@ namespace BookStorePatika.Controllers
         {
             BookDetailViewModel result;
 
-            try
-            {
-                GetBookDetailQuery getBookDetailQuery = new GetBookDetailQuery(_context, _mapper);
 
-                getBookDetailQuery.BookId = id;
-                GetBookDetailQueryValidator bookDetailValidator = new GetBookDetailQueryValidator();
+            GetBookDetailQuery getBookDetailQuery = new GetBookDetailQuery(_context, _mapper);
 
-                bookDetailValidator.ValidateAndThrow(getBookDetailQuery);
+            getBookDetailQuery.BookId = id;
+            GetBookDetailQueryValidator bookDetailValidator = new GetBookDetailQueryValidator();
 
-                result = getBookDetailQuery.Handle();
+            bookDetailValidator.ValidateAndThrow(getBookDetailQuery);
 
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            result = getBookDetailQuery.Handle();
+
+            return Ok(result);
+
+            //return BadRequest(ex.Message);
+
         }
 
         [HttpGet]
@@ -82,19 +79,15 @@ namespace BookStorePatika.Controllers
         public IActionResult AddBook(CreateBookModel newBook)
         {
             CreateBookCommand createBookCommand = new CreateBookCommand(_context, _mapper);
-            try
-            {
-                createBookCommand.Model = newBook;
-                CreateCommandValidator validationRules = new CreateCommandValidator();
 
-                validationRules.ValidateAndThrow(createBookCommand);
-                createBookCommand.Handle();
-            }
+            createBookCommand.Model = newBook;
+            CreateCommandValidator validationRules = new CreateCommandValidator();
 
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            validationRules.ValidateAndThrow(createBookCommand);
+            createBookCommand.Handle();
+
+            //return BadRequest(ex.Message);
+
 
 
             return Ok();
@@ -104,21 +97,19 @@ namespace BookStorePatika.Controllers
         [HttpPut("{id}")]
         public IActionResult UpdateBook(int id, UpdateBookViewModel updatedBook)
         {
-            try
-            {
-                UpdateBookCommand updateBookCommand = new UpdateBookCommand(_context);
-                updateBookCommand.BookId = id;
-                updateBookCommand.Model = updatedBook;
-                UpdateCommandValidator updateValidator = new UpdateCommandValidator();
 
-                updateValidator.ValidateAndThrow(updateBookCommand);
+            UpdateBookCommand updateBookCommand = new UpdateBookCommand(_context);
+            updateBookCommand.BookId = id;
+            updateBookCommand.Model = updatedBook;
+            UpdateCommandValidator updateValidator = new UpdateCommandValidator();
 
-                updateBookCommand.Handle();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            updateValidator.ValidateAndThrow(updateBookCommand);
+
+            updateBookCommand.Handle();
+
+
+            //return BadRequest(ex.Message);
+
 
             return Ok();
         }
@@ -127,18 +118,18 @@ namespace BookStorePatika.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteBook(int id)
         {
-            try
-            {
-                DeleteBookCommand deleteBookCommand = new DeleteBookCommand(_context);
-                deleteBookCommand.BookId = id;
-                DeleteCommandValidator validationRules = new DeleteCommandValidator();
-                validationRules.ValidateAndThrow(deleteBookCommand);
-                deleteBookCommand.Handle();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+
+            DeleteBookCommand deleteBookCommand = new DeleteBookCommand(_context);
+            deleteBookCommand.BookId = id;
+            DeleteCommandValidator validationRules = new DeleteCommandValidator();
+            validationRules.ValidateAndThrow(deleteBookCommand);
+
+
+            deleteBookCommand.Handle();
+
+
+            //return BadRequest(ex.Message);
+
 
             return Ok();
         }
