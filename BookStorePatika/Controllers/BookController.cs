@@ -1,20 +1,15 @@
 ﻿using AutoMapper;
-using BookStorePatika.BookOperations.CreateBook;
-using BookStorePatika.BookOperations.DeleteBook;
-using BookStorePatika.BookOperations.GetBookDetail;
-using BookStorePatika.BookOperations.GetBooks;
-using BookStorePatika.BookOperations.UpdateBook;
-using BookStorePatika.Entity;
+using BookStorePatika.Application.BookOperations.GetBooks;
+using BookStorePatika.Application.Commands.BookOperations.CreateBook;
+using BookStorePatika.Application.Commands.BookOperations.DeleteBook;
+using BookStorePatika.Application.Commands.BookOperations.UpdateBook;
+using BookStorePatika.Application.Queries.BookOperations.GetBookDetail;
+using BookStorePatika.DBOperations;
 using FluentValidation;
-using FluentValidation.Results;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using static BookStorePatika.BookOperations.CreateBook.CreateBookCommand;
-using static BookStorePatika.BookOperations.UpdateBook.UpdateBookCommand;
+using static BookStorePatika.Application.Commands.BookOperations.CreateBook.CreateBookCommand;
+using static BookStorePatika.Application.Commands.BookOperations.UpdateBook.UpdateBookCommand;
 
 namespace BookStorePatika.Controllers
 {
@@ -37,7 +32,7 @@ namespace BookStorePatika.Controllers
         public IActionResult GetBooks()
         {
             GetBooksQuery getBooksQuery = new GetBooksQuery(_context, _mapper);
-            var result = getBooksQuery.Handle();
+            List<BooksViewModel> result = getBooksQuery.Handle();
 
             return Ok(result);
         }
@@ -60,19 +55,6 @@ namespace BookStorePatika.Controllers
 
             return Ok(result);
 
-            //return BadRequest(ex.Message);
-
-        }
-
-        [HttpGet]
-        public Book GetQueryStringById(int id)
-        {
-            var book = _context.Books.Where(x => x.Id == id).FirstOrDefault();
-            if (book == null)
-            {
-                return new Book();
-            }
-            return book;
         }
 
         [HttpPost]
@@ -81,14 +63,10 @@ namespace BookStorePatika.Controllers
             CreateBookCommand createBookCommand = new CreateBookCommand(_context, _mapper);
 
             createBookCommand.Model = newBook;
-            CreateCommandValidator validationRules = new CreateCommandValidator();
+            CreateBookCommandValidator createValidator = new CreateBookCommandValidator();
 
-            validationRules.ValidateAndThrow(createBookCommand);
+            createValidator.ValidateAndThrow(createBookCommand);
             createBookCommand.Handle();
-
-            //return BadRequest(ex.Message);
-
-
 
             return Ok();
         }
@@ -107,10 +85,6 @@ namespace BookStorePatika.Controllers
 
             updateBookCommand.Handle();
 
-
-            //return BadRequest(ex.Message);
-
-
             return Ok();
         }
 
@@ -121,20 +95,13 @@ namespace BookStorePatika.Controllers
 
             DeleteBookCommand deleteBookCommand = new DeleteBookCommand(_context);
             deleteBookCommand.BookId = id;
-            DeleteCommandValidator validationRules = new DeleteCommandValidator();
+            DeleteBookCommandValidator validationRules = new DeleteBookCommandValidator();
             validationRules.ValidateAndThrow(deleteBookCommand);
 
 
             deleteBookCommand.Handle();
 
-
-            //return BadRequest(ex.Message);
-
-
             return Ok();
         }
-
-
-
     }
 }
