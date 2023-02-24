@@ -9,11 +9,11 @@ namespace BookStorePatika.Application.GenreOperations.Commands.DeleteGenre
 {
     public class DeleteGenreCommand
     {
-        private readonly BookStoreDbContext _context;
+        private readonly IBookStoreDbContext _context;
 
         public int GenreId { get; set; }
 
-        public DeleteGenreCommand(BookStoreDbContext context)
+        public DeleteGenreCommand(IBookStoreDbContext context)
         {
             _context = context;
         }
@@ -24,7 +24,7 @@ namespace BookStorePatika.Application.GenreOperations.Commands.DeleteGenre
 
             if (genre == null)
             {
-                throw new InvalidOperationException("Kitap Türü Bulunamadı");
+                throw new InvalidOperationException("Kitap türü bulunamadı.");
             }
 
             _context.Genres.Remove(genre);

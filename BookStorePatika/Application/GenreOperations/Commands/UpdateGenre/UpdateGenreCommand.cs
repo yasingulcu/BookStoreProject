@@ -10,9 +10,9 @@ namespace BookStorePatika.Application.GenreOperations.Commands.UpdateGenre
         public int GenreId { get; set; }
         public UpdateGenreViewModel Model { get; set; }
 
-        private readonly BookStoreDbContext _context;
+        private readonly IBookStoreDbContext _context;
 
-        public UpdateGenreCommand(BookStoreDbContext context)
+        public UpdateGenreCommand(IBookStoreDbContext context)
         {
             _context = context;
         }
@@ -24,7 +24,7 @@ namespace BookStorePatika.Application.GenreOperations.Commands.UpdateGenre
 
             if (genre == null)
             {
-                throw new InvalidOperationException("Kitap Türü Bulunamadı");
+                throw new InvalidOperationException("Kitap türü bulunamadı.");
             }
 
             if (_context.Genres.Any(x => x.Name.ToLower() == Model.Name.ToLower() && x.Id != GenreId))

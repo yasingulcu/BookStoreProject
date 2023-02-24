@@ -9,12 +9,12 @@ namespace BookStorePatika.Application.Queries.BookOperations.GetBookDetail
 {
     public class GetBookDetailQuery
     {
-        private readonly BookStoreDbContext _context;
+        private readonly IBookStoreDbContext _context;
         private readonly IMapper _mapper;
 
         public int BookId { get; set; }
 
-        public GetBookDetailQuery(BookStoreDbContext context, IMapper mapper)
+        public GetBookDetailQuery(IBookStoreDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;

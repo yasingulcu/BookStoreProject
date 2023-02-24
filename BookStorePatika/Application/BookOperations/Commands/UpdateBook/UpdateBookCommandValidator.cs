@@ -2,9 +2,9 @@
 
 namespace BookStorePatika.Application.Commands.BookOperations.UpdateBook
 {
-    public class UpdateCommandValidator : AbstractValidator<UpdateBookCommand>
+    public class UpdateBookCommandValidator : AbstractValidator<UpdateBookCommand>
     {
-        public UpdateCommandValidator()
+        public UpdateBookCommandValidator()
         {
             RuleFor(command => command.Model.GenreId).GreaterThan(0);
             RuleFor(command => command.BookId).GreaterThan(0);

@@ -39,6 +39,7 @@ namespace BookStorePatika
             });
 
             services.AddDbContext<BookStoreDbContext>(x => x.UseInMemoryDatabase(databaseName: "BookStoreDB"));
+            services.AddScoped<IBookStoreDbContext, BookStoreDbContext>();
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             services.AddSingleton<ILoggerService, ConsoleLogger>();

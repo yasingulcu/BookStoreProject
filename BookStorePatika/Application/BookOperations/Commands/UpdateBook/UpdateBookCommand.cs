@@ -6,12 +6,12 @@ namespace BookStorePatika.Application.Commands.BookOperations.UpdateBook
 {
     public class UpdateBookCommand
     {
-        private readonly BookStoreDbContext _context;
+        private readonly IBookStoreDbContext _context;
 
         public int BookId { get; set; }
         public UpdateBookViewModel Model { get; set; }
 
-        public UpdateBookCommand(BookStoreDbContext context)
+        public UpdateBookCommand(IBookStoreDbContext context)
         {
             _context = context;
         }

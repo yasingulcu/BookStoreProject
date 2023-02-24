@@ -8,10 +8,10 @@ namespace BookStorePatika.Application.BookOperations.GetBooks
 {
     public class GetBooksQuery
     {
-        private readonly BookStoreDbContext _context;
+        private readonly IBookStoreDbContext _context;
         private readonly IMapper _mapper;
 
-        public GetBooksQuery(BookStoreDbContext context, IMapper mapper)
+        public GetBooksQuery(IBookStoreDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
@@ -19,7 +19,7 @@ namespace BookStorePatika.Application.BookOperations.GetBooks
 
         public List<BooksViewModel> Handle()
         {
-            var bookList = _context.Books.Include(x => x.Genre).OrderBy(x => x.Id).ToList();
+            var bookList = _context.Books.Include(g => g.Author).Include(x => x.Genre).OrderBy(x => x.Id).ToList();
 
             List<BooksViewModel> viewModels = _mapper.Map<List<BooksViewModel>>(bookList);
 

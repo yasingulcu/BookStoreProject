@@ -10,10 +10,10 @@ namespace BookStorePatika.Application.GenreOperations.Commands.CreateGenre
     {
         public CreateGenreModel Model { get; set; }
 
-        private readonly BookStoreDbContext _context;
+        private readonly IBookStoreDbContext _context;
         private readonly IMapper _mapper;
 
-        public CreateGenreCommand(BookStoreDbContext context, IMapper mapper)
+        public CreateGenreCommand(IBookStoreDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
@@ -25,7 +25,7 @@ namespace BookStorePatika.Application.GenreOperations.Commands.CreateGenre
 
             if (genre != null)
             {
-                throw new InvalidOperationException("Kitap Türü Zaten Mevcut");
+                throw new InvalidOperationException("Bu kitap türü zaten mevcut.");
             }
 
             genre = _mapper.Map<Genre>(Model);

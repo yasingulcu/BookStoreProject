@@ -1,20 +1,17 @@
 ﻿using BookStorePatika.DBOperations;
 using BookStorePatika.Entities;
-using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace BookStorePatika.Application.AuthorOperations.Commands.DeleteAuthor
 {
     public class DeleteAuthorCommand
     {
-        private readonly BookStoreDbContext _context;
+        private readonly IBookStoreDbContext _context;
 
         public int AuthorId { get; set; }
 
-        public DeleteAuthorCommand(BookStoreDbContext context)
+        public DeleteAuthorCommand(IBookStoreDbContext context)
         {
             _context = context;
         }
@@ -25,12 +22,19 @@ namespace BookStorePatika.Application.AuthorOperations.Commands.DeleteAuthor
                                from b in _context.Books.Where(x => x.AuthorId == ab.Id)
                                select b).FirstOrDefault();
 
-            Author author = _context.Authors.FirstOrDefault(x => x.Id == AuthorId);
+            if(authorBook == null)
+            {
+                throw new InvalidOperationException("Yazarın Kitabı Bulunamadı");
+            }
 
             if (authorBook.IsPublished)
             {
                 throw new InvalidOperationException("Yazarın Kitabı Yayında Olduğu İçin Silinemez..");
             }
+
+            Author author = _context.Authors.FirstOrDefault(x => x.Id == AuthorId);
+
+            
 
             if (author == null)
             {
