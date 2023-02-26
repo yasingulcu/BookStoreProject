@@ -7,6 +7,7 @@ using BookStorePatika.Entities;
 using static BookStorePatika.Application.AuthorOperations.Commands.CreateAuthor.CreateAuthorCommand;
 using static BookStorePatika.Application.AuthorOperations.Queries.GetAuthorsDetail.GetAuthorDetailQuery;
 using static BookStorePatika.Application.Commands.BookOperations.CreateBook.CreateBookCommand;
+using static BookStorePatika.Application.Commands.UserOperations.CreateUser.CreateUserCommand;
 using static BookStorePatika.Application.GenreOperations.Commands.CreateGenre.CreateGenreCommand;
 using static BookStorePatika.Application.GenreOperations.Queries.GetGenreDetail.GetGenreDetailQuery;
 
@@ -27,6 +28,9 @@ namespace BookStorePatika.Common
             CreateMap<CreateAuthorModel, Author>();
             CreateMap<Author, AuthorsViewModel>().ForMember(dest => dest.DateOfBirth, opt => opt.MapFrom(src => src.DateOfBirth.ToString("dd/MM/yyyy")));
             CreateMap<Author, AuthorDetailViewModel>().ForMember(dest => dest.DateOfBirth, opt => opt.MapFrom(src => src.DateOfBirth.ToString("dd/MM/yyyy")));
+
+
+            CreateMap<CreateUserModel, User>();
         }
     }
 }

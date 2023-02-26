@@ -40,3 +40,10 @@ C:\Users\ysg02\Desktop\BookStorePatika\BookStorePatika\obj\Debug\net5.0\ref\Book
 C:\Users\ysg02\Desktop\BookStorePatika\BookStorePatika\obj\Debug\net5.0\BookStorePatika.pdb
 C:\Users\ysg02\Desktop\BookStorePatika\BookStorePatika\obj\Debug\net5.0\BookStorePatika.genruntimeconfig.cache
 C:\Users\ysg02\Desktop\BookStorePatika\BookStorePatika\obj\Debug\net5.0\BookStorePatika.csprojAssemblyReference.cache
+C:\Users\ysg02\Desktop\BookStorePatika\BookStorePatika\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\ysg02\Desktop\BookStorePatika\BookStorePatika\bin\Debug\net5.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\ysg02\Desktop\BookStorePatika\BookStorePatika\bin\Debug\net5.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\ysg02\Desktop\BookStorePatika\BookStorePatika\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\ysg02\Desktop\BookStorePatika\BookStorePatika\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\ysg02\Desktop\BookStorePatika\BookStorePatika\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\ysg02\Desktop\BookStorePatika\BookStorePatika\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll

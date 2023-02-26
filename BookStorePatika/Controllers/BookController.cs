@@ -6,6 +6,7 @@ using BookStorePatika.Application.Commands.BookOperations.UpdateBook;
 using BookStorePatika.Application.Queries.BookOperations.GetBookDetail;
 using BookStorePatika.DBOperations;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using static BookStorePatika.Application.Commands.BookOperations.CreateBook.CreateBookCommand;
@@ -13,6 +14,7 @@ using static BookStorePatika.Application.Commands.BookOperations.UpdateBook.Upda
 
 namespace BookStorePatika.Controllers
 {
+    [Authorize]
     [Route("api/[action]")]
     [ApiController]
     public class BookController : ControllerBase
